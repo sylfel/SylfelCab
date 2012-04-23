@@ -11,5 +11,18 @@
 *.la
 *.a
 
+#Visual Studio files
+*.sdf
+*.user
+*.ncb
+*.suo
+*.obj
+*.ilk
+*.pch
+*.pdb
+*.dep
+*.idb
+Builds/VisualStudio2010/Debug
+
 # Library Juce
 JuceLibraryCode
