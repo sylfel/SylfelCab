@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="L52D7s" name="SylfelCab" projectType="audioplug" version="0.0.1"
+              bundleIdentifier="com.sylfel.SylfelCab" buildVST="1" buildRTAS="0"
+              buildAU="0" pluginName="SylfelCab" pluginDesc="SylfelCab" pluginManufacturer="Sylfel"
+              pluginManufacturerCode="Sylf" pluginCode="SYC2" pluginChannelConfigs="{1, 1}"
+              pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
+              pluginSilenceInIsSilenceOut="1" pluginTailLength="0" pluginEditorRequiresKeys="0"
+              pluginAUExportPrefix="SylfelCabAU" pluginAUViewClass="SylfelCabAU_V1"
+              pluginRTASCategory="" jucerVersion="3.0.0">
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" objCExtraSuffix="jsGZrW" juceFolder="..\juce\modules"
+               vstFolder="~/SDKs/vstsdk2.4">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SylfelCab"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="SylfelCab"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+      </CONFIGURATIONS>
+    </XCODE_MAC>
+    <VS2010 targetFolder="Builds/VisualStudio2010" libraryType="1" juceFolder="..\juce\modules"
+            vstFolder="C:\dev\vstsdk2.4">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SylfelCab"
+                       winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="SylfelCab"
+                       winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"/>
+      </CONFIGURATIONS>
+    </VS2010>
+    <LINUX_MAKE targetFolder="Builds/Linux" juceFolder="..\juce\modules" vstFolder="~/SDKs/vstsdk2.4">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SylfelCab"
+                       libraryPath="/usr/X11R6/lib/"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="SylfelCab"
+                       libraryPath="/usr/X11R6/lib/"/>
+      </CONFIGURATIONS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+  <MAINGROUP id="tH9g3e" name="SylfelCab">
+    <GROUP id="{E75D89AA-6515-0E17-D7E4-4FD3B518AB55}" name="Source">
+      <GROUP id="{950892BE-FBC7-F1D9-1435-B8CC09BA30BE}" name="fft">
+        <FILE id="k1VU80" name="Array.h" compile="0" resource="0" file="Source/ffft/Array.h"/>
+        <FILE id="e6RJNf" name="Array.hpp" compile="0" resource="0" file="Source/ffft/Array.hpp"/>
+        <FILE id="wL0WLY" name="def.h" compile="0" resource="0" file="Source/ffft/def.h"/>
+        <FILE id="ZRLwTY" name="DynArray.h" compile="0" resource="0" file="Source/ffft/DynArray.h"/>
+        <FILE id="tpj85F" name="DynArray.hpp" compile="0" resource="0" file="Source/ffft/DynArray.hpp"/>
+        <FILE id="iTge0G" name="FFTReal.h" compile="0" resource="0" file="Source/ffft/FFTReal.h"/>
+        <FILE id="mys0kb" name="FFTReal.hpp" compile="0" resource="0" file="Source/ffft/FFTReal.hpp"/>
+        <FILE id="bnGDGl" name="FFTRealFixLen.h" compile="0" resource="0" file="Source/ffft/FFTRealFixLen.h"/>
+        <FILE id="Ph8TnO" name="FFTRealFixLen.hpp" compile="0" resource="0"
+              file="Source/ffft/FFTRealFixLen.hpp"/>
+        <FILE id="KH7oPZ" name="FFTRealFixLenParam.h" compile="0" resource="0"
+              file="Source/ffft/FFTRealFixLenParam.h"/>
+        <FILE id="ulYcOk" name="FFTRealPassDirect.h" compile="0" resource="0"
+              file="Source/ffft/FFTRealPassDirect.h"/>
+        <FILE id="aTUCln" name="FFTRealPassDirect.hpp" compile="0" resource="0"
+              file="Source/ffft/FFTRealPassDirect.hpp"/>
+        <FILE id="yT5pyi" name="FFTRealPassInverse.h" compile="0" resource="0"
+              file="Source/ffft/FFTRealPassInverse.h"/>
+        <FILE id="GndNHY" name="FFTRealPassInverse.hpp" compile="0" resource="0"
+              file="Source/ffft/FFTRealPassInverse.hpp"/>
+        <FILE id="Ad11sI" name="FFTRealSelect.h" compile="0" resource="0" file="Source/ffft/FFTRealSelect.h"/>
+        <FILE id="CtvqqG" name="FFTRealSelect.hpp" compile="0" resource="0"
+              file="Source/ffft/FFTRealSelect.hpp"/>
+        <FILE id="WjVuB7" name="FFTRealUseTrigo.h" compile="0" resource="0"
+              file="Source/ffft/FFTRealUseTrigo.h"/>
+        <FILE id="J6zcaV" name="FFTRealUseTrigo.hpp" compile="0" resource="0"
+              file="Source/ffft/FFTRealUseTrigo.hpp"/>
+        <FILE id="C2rX2v" name="OscSinCos.h" compile="0" resource="0" file="Source/ffft/OscSinCos.h"/>
+        <FILE id="e9Q7XP" name="OscSinCos.hpp" compile="0" resource="0" file="Source/ffft/OscSinCos.hpp"/>
+      </GROUP>
+      <FILE id="nznaQA" name="Convolution.cpp" compile="1" resource="0" file="Source/Convolution.cpp"/>
+      <FILE id="q7cFcL" name="Convolution.h" compile="0" resource="0" file="Source/Convolution.h"/>
+      <FILE id="vk8l6i" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="h02vXi" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="znQKbf" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="ZZRR8V" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled" JUCE_USE_CDREADER="disabled" JUCE_USE_CDBURNER="disabled"/>
+</JUCERPROJECT>
