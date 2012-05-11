@@ -23,6 +23,8 @@
 *.dep
 *.idb
 Builds/VisualStudio2010/Debug
+Builds/VisualStudio2010/Release
+Builds/VisualStudio2010/ipch
 
 # Library Juce
 JuceLibraryCode
