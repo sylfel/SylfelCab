@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="L52D7s" name="SylfelCab" projectType="audioplug" version="0.0.1"
+<JUCERPROJECT id="L52D7s" name="SylfelCab" projectType="audioplug" version="0.0.2"
               bundleIdentifier="com.sylfel.SylfelCab" buildVST="1" buildRTAS="0"
               buildAU="0" pluginName="SylfelCab" pluginDesc="SylfelCab" pluginManufacturer="Sylfel"
-              pluginManufacturerCode="Sylf" pluginCode="SYC2" pluginChannelConfigs="{1, 1}"
+              pluginManufacturerCode="Sylf" pluginCode="SYC2" pluginChannelConfigs="{2,2}"
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginSilenceInIsSilenceOut="1" pluginTailLength="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="SylfelCabAU" pluginAUViewClass="SylfelCabAU_V1"
@@ -90,10 +90,10 @@
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled" JUCE_USE_CDREADER="disabled" JUCE_USE_CDBURNER="disabled"/>
 </JUCERPROJECT>

@@ -13,29 +13,29 @@
 
 
 //==============================================================================
-Tgconvol2AudioProcessor::Tgconvol2AudioProcessor()
+SylfelCabAudioProcessor::SylfelCabAudioProcessor()
 {
     bypass = 0.0f;
-    impulsePath = "C:/dev/perso/TGConvol/Impulse/goc.wav";
+    impulsePath = "C:/Users/jpt/Downloads/Impulses/FramusCap57_TS.wav";
     convolution.setImpulse(impulsePath);
 }
 
-Tgconvol2AudioProcessor::~Tgconvol2AudioProcessor()
+SylfelCabAudioProcessor::~SylfelCabAudioProcessor()
 {
 }
 
 //==============================================================================
-const String Tgconvol2AudioProcessor::getName() const
+const String SylfelCabAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-int Tgconvol2AudioProcessor::getNumParameters()
+int SylfelCabAudioProcessor::getNumParameters()
 {
-    return Parameters::totalNumParams;
+    return SylfelCabAudioProcessor::Parameters::totalNumParams;
 }
 
-float Tgconvol2AudioProcessor::getParameter (int index)
+float SylfelCabAudioProcessor::getParameter (int index)
 {
     // This method will be called by the host, probably on the audio thread, so
     // it's absolutely time-critical. Don't use critical sections or anything
@@ -47,7 +47,7 @@ float Tgconvol2AudioProcessor::getParameter (int index)
     }
 }
 
-void Tgconvol2AudioProcessor::setParameter (int index, float newValue)
+void SylfelCabAudioProcessor::setParameter (int index, float newValue)
 {
 	// This method will be called by the host, probably on the audio thread, so
     // it's absolutely time-critical. Don't use critical sections or anything
@@ -59,37 +59,37 @@ void Tgconvol2AudioProcessor::setParameter (int index, float newValue)
     }
 }
 
-const String Tgconvol2AudioProcessor::getParameterName (int index)
+const String SylfelCabAudioProcessor::getParameterName (int index)
 {
     return String::empty;
 }
 
-const String Tgconvol2AudioProcessor::getParameterText (int index)
+const String SylfelCabAudioProcessor::getParameterText (int index)
 {
     return String::empty;
 }
 
-const String Tgconvol2AudioProcessor::getInputChannelName (int channelIndex) const
+const String SylfelCabAudioProcessor::getInputChannelName (int channelIndex) const
 {
     return String (channelIndex + 1);
 }
 
-const String Tgconvol2AudioProcessor::getOutputChannelName (int channelIndex) const
+const String SylfelCabAudioProcessor::getOutputChannelName (int channelIndex) const
 {
     return String (channelIndex + 1);
 }
 
-bool Tgconvol2AudioProcessor::isInputChannelStereoPair (int index) const
+bool SylfelCabAudioProcessor::isInputChannelStereoPair (int index) const
 {
     return true;
 }
 
-bool Tgconvol2AudioProcessor::isOutputChannelStereoPair (int index) const
+bool SylfelCabAudioProcessor::isOutputChannelStereoPair (int index) const
 {
     return true;
 }
 
-bool Tgconvol2AudioProcessor::acceptsMidi() const
+bool SylfelCabAudioProcessor::acceptsMidi() const
 {
 #if JucePlugin_WantsMidiInput
     return true;
@@ -98,7 +98,7 @@ bool Tgconvol2AudioProcessor::acceptsMidi() const
 #endif
 }
 
-bool Tgconvol2AudioProcessor::producesMidi() const
+bool SylfelCabAudioProcessor::producesMidi() const
 {
 #if JucePlugin_ProducesMidiOutput
     return true;
@@ -107,49 +107,49 @@ bool Tgconvol2AudioProcessor::producesMidi() const
 #endif
 }
 
-int Tgconvol2AudioProcessor::getNumPrograms()
+int SylfelCabAudioProcessor::getNumPrograms()
 {
     return 0;
 }
 
-int Tgconvol2AudioProcessor::getCurrentProgram()
+int SylfelCabAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void Tgconvol2AudioProcessor::setCurrentProgram (int index)
+void SylfelCabAudioProcessor::setCurrentProgram (int index)
 {
 }
 
-const String Tgconvol2AudioProcessor::getProgramName (int index)
+const String SylfelCabAudioProcessor::getProgramName (int index)
 {
     return String::empty;
 }
 
-void Tgconvol2AudioProcessor::changeProgramName (int index, const String& newName)
+void SylfelCabAudioProcessor::changeProgramName (int index, const String& newName)
 {
 }
 
-void Tgconvol2AudioProcessor::setImpulsePath(File file) 
+void SylfelCabAudioProcessor::setImpulsePath(File file) 
 {
     impulsePath = file.getFileName();
     convolution.setImpulse(file);
 }
 
 //==============================================================================
-void Tgconvol2AudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void SylfelCabAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
 }
 
-void Tgconvol2AudioProcessor::releaseResources()
+void SylfelCabAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
-void Tgconvol2AudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
+void SylfelCabAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
     if (bypass == 0.0f) {
         convolution.process(buffer);
@@ -165,25 +165,25 @@ void Tgconvol2AudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 }
 
 //==============================================================================
-bool Tgconvol2AudioProcessor::hasEditor() const
+bool SylfelCabAudioProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-AudioProcessorEditor* Tgconvol2AudioProcessor::createEditor()
+AudioProcessorEditor* SylfelCabAudioProcessor::createEditor()
 {
-    return new Tgconvol2AudioProcessorEditor (this);
+    return new SylfelCabAudioProcessorEditor (this);
 }
 
 //==============================================================================
-void Tgconvol2AudioProcessor::getStateInformation (MemoryBlock& destData)
+void SylfelCabAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void Tgconvol2AudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void SylfelCabAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
@@ -193,5 +193,5 @@ void Tgconvol2AudioProcessor::setStateInformation (const void* data, int sizeInB
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new Tgconvol2AudioProcessor();
+    return new SylfelCabAudioProcessor();
 }

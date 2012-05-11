@@ -13,7 +13,7 @@
 
 
 //==============================================================================
-Tgconvol2AudioProcessorEditor::Tgconvol2AudioProcessorEditor (Tgconvol2AudioProcessor* ownerFilter)
+SylfelCabAudioProcessorEditor::SylfelCabAudioProcessorEditor (SylfelCabAudioProcessor* ownerFilter)
     : AudioProcessorEditor (ownerFilter)
 {
     // This is where our plugin's editor size is set.
@@ -32,13 +32,13 @@ Tgconvol2AudioProcessorEditor::Tgconvol2AudioProcessorEditor (Tgconvol2AudioProc
 	startTimer(50);
 }
 
-Tgconvol2AudioProcessorEditor::~Tgconvol2AudioProcessorEditor()
+SylfelCabAudioProcessorEditor::~SylfelCabAudioProcessorEditor()
 {
 
 }
 
 //==============================================================================
-void Tgconvol2AudioProcessorEditor::paint (Graphics& g)
+void SylfelCabAudioProcessorEditor::paint (Graphics& g)
 {
     g.fillAll (Colours::white);
     g.setColour (Colours::black);
@@ -49,7 +49,7 @@ void Tgconvol2AudioProcessorEditor::paint (Graphics& g)
 }
 
 
-void Tgconvol2AudioProcessorEditor::resized()
+void SylfelCabAudioProcessorEditor::resized()
 {
     bypassBtn.setBounds (10, 10, getWidth() , 30);
     label.setBounds(10, 40, getWidth() - 40 , 30);
@@ -58,17 +58,17 @@ void Tgconvol2AudioProcessorEditor::resized()
 
 //==============================================================================
 // This timer periodically checks whether any of the filter's parameters have changed...
-void Tgconvol2AudioProcessorEditor::timerCallback()
+void SylfelCabAudioProcessorEditor::timerCallback()
 {
-    Tgconvol2AudioProcessor* ourProcessor = getProcessor();
+    SylfelCabAudioProcessor* ourProcessor = getProcessor();
     bypassBtn.setToggleState(ourProcessor->bypass == 1.0f, false);
     label.setText(ourProcessor->impulsePath, false);
 }
 
-void Tgconvol2AudioProcessorEditor::buttonClicked (Button * button)
+void SylfelCabAudioProcessorEditor::buttonClicked (Button * button)
 {
     if (button == &bypassBtn) {
-        getProcessor()->setParameterNotifyingHost (Tgconvol2AudioProcessor::bypassParam,
+        getProcessor()->setParameterNotifyingHost (SylfelCabAudioProcessor::bypassParam,
             (button->getToggleState() ? 1.0f : 0.0f));
     } else if (button == &choiceButton) {
                         FileChooser fc ("Choose a file to open...",

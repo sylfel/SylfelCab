@@ -17,12 +17,12 @@
 //==============================================================================
 /**
 */
-class Tgconvol2AudioProcessor  : public AudioProcessor
+class SylfelCabAudioProcessor  : public AudioProcessor
 {
 public:
     //==============================================================================
-    Tgconvol2AudioProcessor();
-    ~Tgconvol2AudioProcessor();
+    SylfelCabAudioProcessor();
+    ~SylfelCabAudioProcessor();
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock);
@@ -80,7 +80,7 @@ public:
 private:
     Convolution convolution;
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Tgconvol2AudioProcessor);
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SylfelCabAudioProcessor);
 };
 
 #endif  // __PLUGINPROCESSOR_H_7DDBBCF5__

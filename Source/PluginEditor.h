@@ -18,13 +18,13 @@
 //==============================================================================
 /**
 */
-class Tgconvol2AudioProcessorEditor  : public AudioProcessorEditor,
+class SylfelCabAudioProcessorEditor  : public AudioProcessorEditor,
 									   public Timer,
                                        public ButtonListener
 {
 public:
-    Tgconvol2AudioProcessorEditor (Tgconvol2AudioProcessor* ownerFilter);
-    ~Tgconvol2AudioProcessorEditor();
+    SylfelCabAudioProcessorEditor (SylfelCabAudioProcessor* ownerFilter);
+    ~SylfelCabAudioProcessorEditor();
 
     //==============================================================================
     // This is just a standard Juce paint method...
@@ -37,9 +37,9 @@ private:
     Label label;
     TextButton choiceButton;
 
-	Tgconvol2AudioProcessor* getProcessor() const
+	SylfelCabAudioProcessor* getProcessor() const
     {
-        return static_cast <Tgconvol2AudioProcessor*> (getAudioProcessor());
+        return static_cast <SylfelCabAudioProcessor*> (getAudioProcessor());
     }
 };
 

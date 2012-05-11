@@ -18,7 +18,7 @@ Convolution::Convolution() :
         tempBuffer(1,CST_LENGTH_CONVOL)
 {
 	impulseLoaded = false;
-	
+
 	convolIn.clear();
     overlap.clear();
 
@@ -30,8 +30,7 @@ Convolution::Convolution() :
 	resultat = new float[CST_LENGTH_CONVOL];
 	for (int i = 0; i < CST_LENGTH_CONVOL; i++) {
 		resultat[i] = 0;
-	}
-	
+	}	
 }
 
 Convolution::~Convolution()
