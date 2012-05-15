@@ -9,71 +9,47 @@
 */
 #include "Convolution.h"
 
-int CST_LENGTH_CONVOL = 16384; //4096 , 8192 , 16384
+int CST_LENGTH_CONVOL = 4096; //2048, 4096 , 8192 , 16384
 
-Convolution::Convolution() :
+Convolution::Convolution() noexcept :
 	fft_object(CST_LENGTH_CONVOL),
         convolIn(1,CST_LENGTH_CONVOL),
-        overlap(1,CST_LENGTH_CONVOL),
-        tempBuffer(1,CST_LENGTH_CONVOL)
+        overlap(2,CST_LENGTH_CONVOL)
 {
 	impulseLoaded = false;
+    initData();
+}
 
-	convolIn.clear();
+Convolution::~Convolution() noexcept
+{
+}
+
+void Convolution::initData() noexcept
+{
+    convolIn.clear();
     overlap.clear();
 
-	impulse = new float[CST_LENGTH_CONVOL];
-	for (int i = 0; i < CST_LENGTH_CONVOL; i++) {
-		impulse[i] = 0;
-	}
-	
-	resultat = new float[CST_LENGTH_CONVOL];
-	for (int i = 0; i < CST_LENGTH_CONVOL; i++) {
-		resultat[i] = 0;
-	}	
+    impulse.calloc(CST_LENGTH_CONVOL);
+    resultat.calloc(CST_LENGTH_CONVOL);
 }
 
-Convolution::~Convolution()
-{
-	deleteAndZero(impulse);
-	deleteAndZero(resultat);
-}
-
-void Convolution::setImpulse(File file)
+void Convolution::setImpulse(AudioFormatReader* reader) noexcept
 {
 	impulseLoaded = false;
-	AudioFormatReader* reader = nullptr;
-	AudioSampleBuffer* buffer = nullptr;
-	try {
-		// Read wav file
-		WavAudioFormat wavAudioFormat;
-		AudioFormatReader* reader = wavAudioFormat.createReaderFor(file.createInputStream(), true);
-		
-		// Extract sample (maximum CST_LENGTH_CONVOL / 2 samples)
-		buffer = new AudioSampleBuffer(1,CST_LENGTH_CONVOL);
-		buffer->clear();
-		reader->read(buffer, 0, jmin((int)reader->lengthInSamples, CST_LENGTH_CONVOL / 2), 0 , true, true);
-		// do fft to impulse
-		fft_object.do_fft(impulse, buffer->getSampleData(0,0));
-		impulseLoaded = true;
-	} catch (...) {
-
-	}
-
-	if (reader != nullptr) {
-		deleteAndZero(reader);
-	}
-	if (buffer != nullptr) {
-		deleteAndZero(buffer);
-	}
+    ScopedPointer<AudioSampleBuffer> buffer = new AudioSampleBuffer(1,CST_LENGTH_CONVOL);
+	buffer->clear();
+	reader->read(buffer, 0, jmin((int)reader->lengthInSamples, CST_LENGTH_CONVOL / 2), 0 , true, true);
+	// do fft to impulse
+	fft_object.do_fft(impulse, buffer->getSampleData(0,0));
+	impulseLoaded = true;
 }
 
-void Convolution::process(AudioSampleBuffer& buffer) 
+void Convolution::process(AudioSampleBuffer& buffer, int numChannel) noexcept 
 {
 	if (impulseLoaded) {
 		int numSamples = buffer.getNumSamples();
         convolIn.clear();
-		convolIn.copyFrom(0,0,buffer,0,0, numSamples);
+		convolIn.copyFrom(0,0,buffer,numChannel,0, numSamples);
 		// to frequency domain
 		fft_object.do_fft (resultat, convolIn.getSampleData(0,0));     // x (real) --FFT---> f (complex)
 		
@@ -93,11 +69,9 @@ void Convolution::process(AudioSampleBuffer& buffer)
         // Post-scaling should be done after FFT+IFFT
 		fft_object.rescale (convolIn.getSampleData(0,0));
 
-        convolIn.addFrom(0,0,overlap,0,0,CST_LENGTH_CONVOL);
-        buffer.copyFrom(0,0, convolIn, 0, 0, numSamples);
+        convolIn.addFrom(0,0,overlap,numChannel,0,CST_LENGTH_CONVOL);
+        buffer.copyFrom(numChannel,0, convolIn, 0, 0, numSamples);
         
-        // buffer.addFrom(0,0,overlap,0,0,numSamples);
-
-        overlap.copyFrom(0,0,convolIn,0,numSamples,CST_LENGTH_CONVOL - numSamples);
+        overlap.copyFrom(numChannel,0,convolIn,0,numSamples,CST_LENGTH_CONVOL - numSamples);
 	}
 }

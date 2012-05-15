@@ -41,6 +41,7 @@ private:
     {
         return static_cast <SylfelCabAudioProcessor*> (getAudioProcessor());
     }
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SylfelCabAudioProcessorEditor);
 };
 
 

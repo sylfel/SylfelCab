@@ -71,14 +71,13 @@ void SylfelCabAudioProcessorEditor::buttonClicked (Button * button)
         getProcessor()->setParameterNotifyingHost (SylfelCabAudioProcessor::bypassParam,
             (button->getToggleState() ? 1.0f : 0.0f));
     } else if (button == &choiceButton) {
-                        FileChooser fc ("Choose a file to open...",
-                                File::getCurrentWorkingDirectory(),
-                                "*",
-                                true);
-
-                if (fc.browseForFileToOpen())
-                {
-                    getProcessor()->setImpulsePath(fc.getResult());
-                }
+        FileChooser fc ("Choose a file to open...",
+                File::getCurrentWorkingDirectory(),
+                "*",
+                true);
+        if (fc.browseForFileToOpen())
+        {
+            getProcessor()->setImpulsePath(fc.getResult());
+        }
     }
 }

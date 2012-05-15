@@ -17,20 +17,22 @@
 class Convolution 
 {
 public:
-    Convolution();
-    ~Convolution();
+    Convolution() noexcept;
+    virtual ~Convolution() noexcept;
 
-    void setImpulse(File file);
+    void setImpulse(AudioFormatReader* reader) noexcept;
 
-	void process(AudioSampleBuffer& buffer);
+	void process(AudioSampleBuffer& buffer, int numChannel) noexcept;
 
 private :
+
+    void initData() noexcept;
+
 	AudioSampleBuffer convolIn;
     AudioSampleBuffer overlap;
-    AudioSampleBuffer tempBuffer;
 	ffft::FFTReal<float> fft_object;
-	float* impulse;
-	float* resultat;
+    HeapBlock<float> impulse;
+	HeapBlock<float> resultat;
 	bool impulseLoaded;
 
     //==============================================================================

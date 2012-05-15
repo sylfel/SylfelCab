@@ -16,8 +16,7 @@
 SylfelCabAudioProcessor::SylfelCabAudioProcessor()
 {
     bypass = 0.0f;
-    impulsePath = "C:/Users/jpt/Downloads/Impulses/FramusCap57_TS.wav";
-    convolution.setImpulse(impulsePath);
+    audioFormatManager.registerBasicFormats();
 }
 
 SylfelCabAudioProcessor::~SylfelCabAudioProcessor()
@@ -133,7 +132,9 @@ void SylfelCabAudioProcessor::changeProgramName (int index, const String& newNam
 void SylfelCabAudioProcessor::setImpulsePath(File file) 
 {
     impulsePath = file.getFileName();
-    convolution.setImpulse(file);
+    AudioFormatReader* reader = audioFormatManager.createReaderFor(file);
+    convolution.setImpulse(reader);
+    delete reader;
 }
 
 //==============================================================================
@@ -152,7 +153,9 @@ void SylfelCabAudioProcessor::releaseResources()
 void SylfelCabAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
     if (bypass == 0.0f) {
-        convolution.process(buffer);
+        for (int i = 0 ; i < getNumInputChannels(); ++i) {
+            convolution.process(buffer, i);
+        }
     }
 
     // In case we have more outputs than inputs, we'll clear any output

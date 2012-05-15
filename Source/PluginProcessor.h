@@ -79,6 +79,7 @@ public:
     String impulsePath;
 private:
     Convolution convolution;
+    AudioFormatManager audioFormatManager;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SylfelCabAudioProcessor);
 };
