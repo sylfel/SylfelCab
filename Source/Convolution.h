@@ -24,13 +24,13 @@ public:
 
 	void process(AudioSampleBuffer& buffer, int numChannel) noexcept;
 
+    void initData(int numberSample) noexcept;
+    void releaseData() noexcept;
 private :
-
-    void initData() noexcept;
-
-	AudioSampleBuffer convolIn;
-    AudioSampleBuffer overlap;
-	ffft::FFTReal<float> fft_object;
+    long lengthConvol;
+	ScopedPointer<AudioSampleBuffer> convolIn;
+    ScopedPointer<AudioSampleBuffer> overlap;
+	ScopedPointer<ffft::FFTReal<float>> fft_object;
     HeapBlock<float> impulse;
 	HeapBlock<float> resultat;
 	bool impulseLoaded;

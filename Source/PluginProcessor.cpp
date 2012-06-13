@@ -131,7 +131,8 @@ void SylfelCabAudioProcessor::changeProgramName (int index, const String& newNam
 
 void SylfelCabAudioProcessor::setImpulsePath(File file) 
 {
-    impulsePath = file.getFileName();
+    DBG(" ---------------- Loading impulse :" << file.getFullPathName());
+    impulsePath = file.getFullPathName();
     AudioFormatReader* reader = audioFormatManager.createReaderFor(file);
     convolution.setImpulse(reader);
     delete reader;
@@ -142,12 +143,22 @@ void SylfelCabAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBl
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    DBG(" ---------------- Prepare To play (" << sampleRate << "Khz , buffer : " << samplesPerBlock);
+    convolution.initData(samplesPerBlock);
+    if (impulsePath.length() > 0 ) {
+        File file = File(impulsePath);
+        if (file.existsAsFile()) {
+            setImpulsePath(file);
+        }        
+    }
 }
 
 void SylfelCabAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
+    DBG(" ---------------- Release Resource");
+    convolution.releaseData();
 }
 
 void SylfelCabAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
