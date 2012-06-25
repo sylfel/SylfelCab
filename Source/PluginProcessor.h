@@ -75,7 +75,7 @@ public:
         totalNumParams
     };
 
-    float bypass;
+    bool bypass;
     String impulsePath;
 private:
     Convolution convolution;
